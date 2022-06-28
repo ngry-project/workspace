@@ -38,8 +38,7 @@
       "options": {
         "baseBranch": "master",
         "preset": "angular",
-        "tagPrefix": "${projectName}@",
-        "dryRun": true
+        "tagPrefix": "${projectName}@"
       }
     }
   },
