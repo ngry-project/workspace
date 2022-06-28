@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          persist-credentials: false
+          persist-credentials: true
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -22,8 +22,8 @@ jobs:
 
       - name: Setup Git
         run: |
-          git config user.name "avchugaev"
-          git config user.email "achugaev93@gmail.com"
+          git config --global user.name "avchugaev"
+          git config --global user.email "achugaev93@gmail.com"
 
       - name: Install dependencies
         run: npm ci
@@ -43,9 +43,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Tag last-release
-        shell: bash
-        run: |
-          git tag -f last-release
-          git push origin last-release --force
+        run: git tag -f last-release
+
+      - name: Tag last-release
+        run: git push origin last-release --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
