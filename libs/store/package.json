@@ -1,0 +1,32 @@
+{
+  "name": "@ngry/store",
+  "version": "13.0.0",
+  "description": "Reactive state management for Angular",
+  "keywords": [
+    "angular",
+    "store",
+    "state",
+    "actionbus",
+    "action",
+    "effect",
+    "effects"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ngry-project/workspace",
+    "directory": "libs/store"
+  },
+  "maintainers": [
+    {
+      "name": "Alex Chugaev",
+      "url": "https://github.com/avchugaev"
+    }
+  ],
+  "peerDependencies": {
+    "@angular/common": "^14.0.0",
+    "@angular/core": "^14.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

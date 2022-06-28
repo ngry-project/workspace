@@ -1,0 +1,64 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/store/src",
+  "prefix": "ngry",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/store"],
+      "options": {
+        "project": "libs/store/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/store/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/store/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/store"],
+      "options": {
+        "jestConfig": "libs/store/jest.config.ts",
+        "passWithNoTests": true,
+        "verbose": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/store/**/*.ts", "libs/store/**/*.html"]
+      }
+    },
+    "release": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "baseBranch": "master",
+        "preset": "angular",
+        "tagPrefix": "${projectName}@",
+        "postTargets": ["store:npm", "store:github"],
+        "trackDeps": true,
+        "push": true,
+        "commitMessageFormat": "chore(${projectName}): release version ${version}\n[skip ci]"
+      }
+    },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
+      }
+    },
+    "npm": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "buildTarget": "production"
+      }
+    }
+  },
+  "tags": []
+}
