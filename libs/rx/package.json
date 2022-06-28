@@ -1,6 +1,26 @@
 {
   "name": "@ngry/rx",
   "version": "0.1.0",
+  "description": "RxJS toolkit for Angular development and testing",
+  "keywords": [
+    "angular",
+    "rx",
+    "task",
+    "state",
+    "operator",
+    "testing"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ngry-project/workspace",
+    "directory": "libs/rx"
+  },
+  "maintainers": [
+    {
+      "name": "Alex Chugaev",
+      "url": "https://github.com/avchugaev"
+    }
+  ],
   "peerDependencies": {
     "@angular/common": "^14.0.0",
     "@angular/core": "^14.0.0"
