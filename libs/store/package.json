@@ -1,6 +1,6 @@
 {
   "name": "@ngry/store",
-  "version": "13.0.0",
+  "version": "13.0.1",
   "description": "Reactive state management for Angular",
   "keywords": [
     "angular",
