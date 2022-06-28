@@ -9,23 +9,23 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Git - Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_USER_TOKEN }}
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - name: Setup Git
+      - name: Git - Setup
         run: |
           git config user.name "avchugaev"
           git config user.email "achugaev93@gmail.com"
 
-      - name: NPM login
+      - name: Node - Setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: NPM - Login
         run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -44,29 +44,29 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install dependencies
+      - name: NPM - Install dependencies
         # if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Lint
+      - name: Nx - Affected - Lint
         run: npm run nx -- affected --target=lint --base=last-release
 
-      - name: Test
+      - name: Nx - Affected - Test
         run: npm run nx -- affected --target=test --base=last-release
 
-      - name: Build
+      - name: Nx - Affected - Build
         run: npm run nx -- affected --target=build --base=last-release
 
-      - name: Release
+      - name: Nx - Affected - Release
         run: npm run nx -- affected --target=release --base=last-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_USER_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Add last-release tag
+      - name: Git - Add "last-release" tag
         run: git tag -f last-release
 
-      - name: Push last-release tag
+      - name: Git - Push "last-release" tag
         run: git push origin last-release --force
         env:
           GITHUB_TOKEN: ${{ secrets.GH_USER_TOKEN }}
