@@ -40,9 +40,9 @@ jobs:
         id: npm-cache
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-release-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-npm-release-
 
       - name: NPM - Install dependencies
         run: npm ci --prefer-offline=true --audit=false
