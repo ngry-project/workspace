@@ -34,13 +34,13 @@
         "lintFilePatterns": ["libs/rx/**/*.ts", "libs/rx/**/*.html"]
       }
     },
-    "version": {
+    "release": {
       "executor": "@jscutlery/semver:version",
       "options": {
         "baseBranch": "master",
         "preset": "angular",
         "tagPrefix": "${projectName}@",
-        "postTargets": ["rx:deploy", "rx:github"],
+        "postTargets": ["rx:npm", "rx:github"],
         "trackDeps": true,
         "push": true,
         "commitMessageFormat": "chore(${projectName}): release version ${version}\n[skip ci]"
@@ -53,7 +53,7 @@
         "notes": "${notes}"
       }
     },
-    "deploy": {
+    "npm": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
         "buildTarget": "production"

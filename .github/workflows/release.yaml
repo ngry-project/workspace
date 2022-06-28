@@ -42,8 +42,8 @@ jobs:
       - name: Build
         run: npm run nx -- affected --target=build --base=last-release
 
-      - name: Version
-        run: npm run nx -- affected --target=version --base=last-release
+      - name: Release
+        run: npm run nx -- affected --target=release --base=last-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_USER_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

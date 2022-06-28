@@ -23,7 +23,7 @@
     "build": {
       "dependsOn": ["^build"]
     },
-    "version": {
+    "release": {
       "dependsOn": ["build"]
     }
   },
