@@ -22,8 +22,8 @@ jobs:
 
       - name: Setup Git
         run: |
-          git config --global user.name "avchugaev"
-          git config --global user.email "achugaev93@gmail.com"
+          git config user.name "avchugaev"
+          git config user.email "achugaev93@gmail.com"
 
       - name: Install dependencies
         run: npm ci
@@ -42,10 +42,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Tag last-release
+      - name: Add last-release tag
         run: git tag -f last-release
 
-      - name: Tag last-release
+      - name: Push last-release tag
         run: git push origin last-release --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
