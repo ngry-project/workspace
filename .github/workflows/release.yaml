@@ -40,6 +40,7 @@ jobs:
         run: npm run nx -- affected --target=version --base=last-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Add last-release tag
         run: git tag -f last-release
