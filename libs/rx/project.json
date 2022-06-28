@@ -24,7 +24,8 @@
       "outputs": ["coverage/libs/rx"],
       "options": {
         "jestConfig": "libs/rx/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "verbose": true
       }
     },
     "lint": {
