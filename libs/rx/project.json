@@ -43,7 +43,7 @@
         "postTargets": ["rx:deploy", "rx:github"],
         "trackDeps": true,
         "push": true,
-        "commitMessageFormat": "chore(${projectName}): release version ${version} [skip ci]"
+        "commitMessageFormat": "chore(${projectName}): release version ${version}\n[skip ci]"
       }
     },
     "github": {
