@@ -42,7 +42,8 @@
         "tagPrefix": "${projectName}@",
         "postTargets": ["rx:deploy", "rx:github"],
         "trackDeps": true,
-        "push": true
+        "push": true,
+        "commitMessageFormat": "chore(${projectName}): release version ${version} [skip ci]"
       }
     },
     "github": {
