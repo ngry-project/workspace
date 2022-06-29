@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@ngry/rx": ["libs/rx/src/index.ts"],
-      "@ngry/store": ["libs/store/src/index.ts"]
+      "@ngry/store": ["libs/store/src/index.ts"],
+      "@ngry/translate": ["libs/translate/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,0 +1,67 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/translate/src",
+  "prefix": "ngry",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/translate"],
+      "options": {
+        "project": "libs/translate/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/translate/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/translate/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/translate"],
+      "options": {
+        "jestConfig": "libs/translate/jest.config.ts",
+        "passWithNoTests": true,
+        "verbose": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/translate/**/*.ts",
+          "libs/translate/**/*.html"
+        ]
+      }
+    },
+    "release": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "baseBranch": "master",
+        "preset": "angular",
+        "tagPrefix": "${projectName}@",
+        "postTargets": ["translate:npm", "translate:github"],
+        "trackDeps": true,
+        "push": true,
+        "commitMessageFormat": "chore(${projectName}): release version ${version}\n[skip ci]"
+      }
+    },
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
+      }
+    },
+    "npm": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "buildTarget": "production"
+      }
+    }
+  },
+  "tags": []
+}

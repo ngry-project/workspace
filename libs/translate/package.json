@@ -1,0 +1,20 @@
+{
+  "name": "@ngry/translate",
+  "version": "3.0.0",
+  "keywords": [
+    "angular",
+    "library",
+    "translate",
+    "pipe"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ngry-project/workspace"
+  },
+  "maintainers": [
+    {
+      "name": "Alex Chugaev",
+      "url": "https://github.com/avchugaev"
+    }
+  ]
+}

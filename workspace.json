@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "rx": "libs/rx",
-    "store": "libs/store"
+    "store": "libs/store",
+    "translate": "libs/translate"
   }
 }
