@@ -1,5 +1,4 @@
 import { inject, InjectionToken } from '@angular/core';
-import { BrowserLanguageSource } from './browser-language-source';
 import { LanguageSource } from './language-source';
 import { TRANSLATE_MODULE_OPTIONS } from './translate.module.options.token';
 
@@ -13,7 +12,7 @@ export const LANGUAGE_SOURCE = new InjectionToken<LanguageSource>(
     factory(): LanguageSource {
       const options = inject(TRANSLATE_MODULE_OPTIONS);
 
-      return options.language.source ?? inject(BrowserLanguageSource);
+      return options.language.source;
     },
   },
 );

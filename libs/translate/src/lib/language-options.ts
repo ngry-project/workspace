@@ -26,11 +26,11 @@ export interface LanguageOptions {
   readonly mapping?: LanguageMapping;
 
   /**
-   * An optional language source.
-   *
-   * When omitted, the {@link BrowserLanguageSource} will be used.
+   * A language source.
+   * @see BrowserLanguageSource
+   * @see FakeLanguageSource
    */
-  readonly source?: LanguageSource;
+  readonly source: LanguageSource;
 
   /**
    * An optional language change handler.
