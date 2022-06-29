@@ -5,7 +5,7 @@ import { FakeLanguageSource } from './fake-language-source';
 import { LanguageSource } from './language-source';
 import { LANGUAGE_SOURCE } from './language-source.token';
 import { TranslateProvider } from './translate.provider';
-import { TranslationModule } from './translation.module';
+import { TranslateModule } from './translate.module';
 import { useTranslateChanges } from './use-translate-changes';
 
 @Component({
@@ -33,7 +33,7 @@ describe('useTranslateChanges', () => {
   beforeEach(() => {
     return TestBed.configureTestingModule({
       imports: [
-        TranslationModule.forRoot(() => ({
+        TranslateModule.forRoot(() => ({
           language: {
             default: 'en',
             supported: ['en', 'uk'],

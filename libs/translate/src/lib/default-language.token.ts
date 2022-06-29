@@ -1,6 +1,6 @@
 import { inject, InjectionToken } from '@angular/core';
 import { Language } from './language';
-import { TRANSLATION_MODULE_OPTIONS } from './translation.module.options.token';
+import { TRANSLATE_MODULE_OPTIONS } from './translate.module.options.token';
 
 /**
  * Provides a default {@link Language}.
@@ -11,7 +11,7 @@ export const DEFAULT_LANGUAGE = new InjectionToken<Language>(
   {
     providedIn: 'root',
     factory(): Language {
-      const options = inject(TRANSLATION_MODULE_OPTIONS);
+      const options = inject(TRANSLATE_MODULE_OPTIONS);
 
       return options.language.default;
     },

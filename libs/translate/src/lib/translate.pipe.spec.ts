@@ -9,7 +9,7 @@ import { LANGUAGE_SOURCE } from './language-source.token';
 import { StandalonePhraseData } from './standalone-phrase-data';
 import { TranslatePipe } from './translate.pipe';
 import { TranslateProvider } from './translate.provider';
-import { TranslationModule } from './translation.module';
+import { TranslateModule } from './translate.module';
 
 interface Data {
   readonly title: StandalonePhraseData;
@@ -65,7 +65,7 @@ describe('TranslatePipe', () => {
   beforeEach(() => {
     return TestBed.configureTestingModule({
       imports: [
-        TranslationModule.forRoot(() => ({
+        TranslateModule.forRoot(() => ({
           language: {
             default: 'en',
             supported: ['en', 'uk'],

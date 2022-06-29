@@ -1,21 +1,21 @@
 import { APP_INITIALIZER, ModuleWithProviders, NgModule } from '@angular/core';
 import { LanguageSourceInitializerFactory } from './language-source.initializer.factory';
-import { TranslationModuleOptions } from './translation.module.options';
-import { TRANSLATION_MODULE_OPTIONS } from './translation.module.options.token';
+import { TranslateModuleOptions } from './translate.module.options';
+import { TRANSLATE_MODULE_OPTIONS } from './translate.module.options.token';
 
 @NgModule()
-export class TranslationModule {
+export class TranslateModule {
   /**
    * Provides an app-level translation configuration.
    */
   static forRoot(
-    factory: () => TranslationModuleOptions,
-  ): ModuleWithProviders<TranslationModule> {
+    factory: () => TranslateModuleOptions,
+  ): ModuleWithProviders<TranslateModule> {
     return {
-      ngModule: TranslationModule,
+      ngModule: TranslateModule,
       providers: [
         {
-          provide: TRANSLATION_MODULE_OPTIONS,
+          provide: TRANSLATE_MODULE_OPTIONS,
           useFactory: factory,
         },
         {
