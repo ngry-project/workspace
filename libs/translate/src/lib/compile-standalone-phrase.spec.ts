@@ -17,13 +17,13 @@ describe('compileStandalonePhrase', () => {
     expect(
       phrase('en')
         .map((phrase) => phrase())
-        .orJust(''),
+        .getOrElse(''),
     ).toBe('Hello');
 
     expect(
       phrase('uk')
         .map((phrase) => phrase())
-        .orJust(''),
+        .getOrElse(''),
     ).toBe('Привіт');
 
     expect(

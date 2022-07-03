@@ -1,5 +1,5 @@
 import { compilePhrase } from './compile-phrase';
-import { Maybe } from './internal/monad/maybe';
+import { Nullable } from './internal/monad/nullable';
 import { memoize } from './internal/performance/memoize';
 import { Language } from './language';
 import { StandalonePhrase } from './standalone-phrase';
@@ -12,6 +12,6 @@ export function compileStandalonePhrase(
   data: StandalonePhraseData,
 ): StandalonePhrase {
   return memoize((language: Language) => {
-    return new Maybe(data[language]).map(compilePhrase);
+    return Nullable(data[language]).map(compilePhrase);
   });
 }

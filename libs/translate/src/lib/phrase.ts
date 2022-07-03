@@ -1,5 +1,3 @@
-import { PhraseParams } from './phrase-params';
+import { Params } from './params';
 
-export interface Phrase {
-  (params?: PhraseParams): string;
-}
+export type Phrase = (params?: Params) => string;

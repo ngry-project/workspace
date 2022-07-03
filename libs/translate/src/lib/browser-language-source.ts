@@ -1,30 +1,43 @@
 import { DOCUMENT } from '@angular/common';
-import { inject, Injectable } from '@angular/core';
+import { inject } from '@angular/core';
 import { select } from '@ngry/store';
-import { fromEvent, Subject } from 'rxjs';
+import { BehaviorSubject, fromEvent } from 'rxjs';
 import { DEFAULT_LANGUAGE } from './default-language.token';
+import { Factory } from './factory';
 import { Language } from './language';
 import { LanguageSource } from './language-source';
 
 /**
- * Uses navigator language.
+ * Uses {@link navigator.language} as a source.
+ * Emits changes on {@link Window.onlanguagechange} event.
+ *
  * @see navigator.language
  * @see Window.onlanguagechange
  */
-@Injectable({
-  providedIn: 'root',
-})
-export class BrowserLanguageSource implements LanguageSource {
-  protected readonly default = inject(DEFAULT_LANGUAGE);
-  protected readonly document = inject(DOCUMENT);
-  protected readonly window = this.document.defaultView;
-  protected readonly navigator = this.window?.navigator;
+export function BrowserLanguageSource(): Factory<LanguageSource> {
+  return () => {
+    const _default = inject(DEFAULT_LANGUAGE);
+    const _document = inject(DOCUMENT);
+    const _window = _document.defaultView;
+    const _navigator = _window?.navigator;
 
-  readonly changes = this.window
-    ? fromEvent(this.window, 'languagechange').pipe(select(() => this.current))
-    : new Subject<Language>();
+    const language$ = new BehaviorSubject<Language>(
+      _navigator?.language ?? _default,
+    );
 
-  get current(): Language {
-    return this.navigator?.language ?? this.default;
-  }
+    if (_window) {
+      fromEvent(_window, 'languagechange')
+        .pipe(select(() => _navigator?.language ?? _default))
+        .subscribe(language$);
+    }
+
+    return {
+      get current() {
+        return language$.value;
+      },
+      get changes() {
+        return language$.asObservable();
+      },
+    };
+  };
 }

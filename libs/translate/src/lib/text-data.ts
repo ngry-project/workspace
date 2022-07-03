@@ -1,4 +1,4 @@
 import { Language } from './language';
-import { LanguageData } from './language-data';
+import { BundleData } from './bundle-data';
 
-export type TextData = Record<Language, LanguageData>;
+export type TextData = Record<Language, BundleData>;

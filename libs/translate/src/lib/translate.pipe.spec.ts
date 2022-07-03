@@ -3,13 +3,13 @@ import { Component, Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
-import { FakeLanguageSource } from './fake-language-source';
+import { DefaultLanguageSource } from './default-language-source';
 import { LanguageSource } from './language-source';
 import { LANGUAGE_SOURCE } from './language-source.token';
+import { LanguageModule } from './language.module';
 import { StandalonePhraseData } from './standalone-phrase-data';
 import { TranslatePipe } from './translate.pipe';
 import { TranslateProvider } from './translate.provider';
-import { TranslateModule } from './translate.module';
 
 interface Data {
   readonly title: StandalonePhraseData;
@@ -64,15 +64,13 @@ describe('TranslatePipe', () => {
 
   beforeEach(() => {
     return TestBed.configureTestingModule({
-      imports: [
-        TranslateModule.forRoot(() => ({
-          language: {
-            default: 'en',
-            supported: ['en', 'uk'],
-            source: new FakeLanguageSource('en'),
-          },
-        })),
-        TestComponent,
+      imports: [TestComponent],
+      providers: [
+        LanguageModule({
+          default: 'en',
+          supported: ['en', 'uk'],
+          source: DefaultLanguageSource(),
+        }),
       ],
     }).compileComponents();
   });

@@ -1,4 +1,4 @@
-import { PhraseParams } from './phrase-params';
+import { Params } from './params';
 import { Phrase } from './phrase';
 
 const ENTRY = /{{\s*(\w+)\s*}}/g;
@@ -14,7 +14,7 @@ export function isTemplate(phrase: string): boolean {
  * @internal
  */
 export function compileTemplatePhrase(template: string): Phrase {
-  return (params: PhraseParams = {}): string => {
+  return (params: Params = {}): string => {
     return template.replace(ENTRY, (_: string, parameter: string) => {
       if (params[parameter] == null) {
         console.warn(

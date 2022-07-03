@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { FakeLanguageSource } from './fake-language-source';
+import { DefaultLanguageSource } from './default-language-source';
 import { LanguageSource } from './language-source';
 import { LANGUAGE_SOURCE } from './language-source.token';
+import { LanguageModule } from './language.module';
 import { TranslateProvider } from './translate.provider';
-import { TranslateModule } from './translate.module';
 import { useTranslate } from './use-translate';
 
 @Component({
-  selector: 'ngry-test',
-  standalone: true,
   viewProviders: [
     TranslateProvider({
       en: {
@@ -30,15 +28,21 @@ describe('useTranslate', () => {
   let source: LanguageSource;
 
   beforeEach(() => {
+    jest.spyOn(console, 'warn').mockImplementation();
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  beforeEach(() => {
     return TestBed.configureTestingModule({
-      imports: [
-        TranslateModule.forRoot(() => ({
-          language: {
-            default: 'en',
-            supported: ['en', 'uk'],
-            source: new FakeLanguageSource('en'),
-          },
-        })),
+      providers: [
+        LanguageModule({
+          default: 'en',
+          supported: ['en', 'uk'],
+          source: DefaultLanguageSource(),
+        }),
       ],
     });
   });
@@ -49,12 +53,37 @@ describe('useTranslate', () => {
   });
 
   describe('when phrase key is given', () => {
-    it('should return a value according to the current language', () => {
-      expect(component.translate('action.save')).toBe('Save');
+    describe('when phrase is known', () => {
+      it('should return a value according to the current language', () => {
+        expect(component.translate('action.save')).toBe('Save');
 
-      source.use?.('uk');
+        source.use?.('uk');
 
-      expect(component.translate('action.save')).toBe('Зберегти');
+        expect(component.translate('action.save')).toBe('Зберегти');
+      });
+    });
+
+    describe('when phrase is unknown', () => {
+      it('should return a phrase key', () => {
+        expect(component.translate('action.unknown')).toBe('action.unknown');
+
+        source.use?.('uk');
+
+        expect(component.translate('action.unknown')).toBe('action.unknown');
+      });
+
+      it('should print a warning', () => {
+        expect(console.warn).toHaveBeenCalledTimes(0);
+
+        component.translate('action.unknown');
+
+        expect(console.warn).toHaveBeenCalledTimes(1);
+        expect(console.warn).toHaveBeenCalledWith(
+          'Phrase "%s" is not defined within language "%s"',
+          'action.unknown',
+          'en',
+        );
+      });
     });
   });
 

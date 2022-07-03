@@ -4,4 +4,4 @@ import { PhraseKey } from './phrase-key';
 /**
  * @internal
  */
-export type LanguageData = Record<PhraseKey, PhraseData>;
+export type BundleData = Record<PhraseKey, PhraseData>;

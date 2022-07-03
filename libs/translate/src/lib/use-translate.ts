@@ -1,50 +1,38 @@
 import { compileStandalonePhrase } from './compile-standalone-phrase';
-import { Delegate } from './delegate';
-import { PhraseParams } from './phrase-params';
+import { Params } from './params';
 import { TranslateInput } from './translate-input';
-import { useDebug } from './use-debug';
 import { useLanguage } from './use-language';
 import { useTextData } from './use-text-data';
 
-export function useTranslate(): Delegate<
-  [input: TranslateInput, params?: PhraseParams],
-  string
-> {
-  const debug = useDebug();
-  const getLanguage = useLanguage();
+export function useTranslate() {
+  const language = useLanguage();
   const maybeTextDataClosure = useTextData();
 
-  return (input: TranslateInput, params?: PhraseParams): string => {
-    const language = getLanguage();
-
+  return (input: TranslateInput, params?: Params): string => {
     if (typeof input === 'string') {
       return maybeTextDataClosure
-        .flatMap((textDataClosure) => textDataClosure(language))
-        .flatMap((languageClosure) => languageClosure(input))
+        .flatMap((closure) => closure(language.snapshot))
+        .flatMap((closure) => closure(input))
         .map((phrase) => phrase(params))
         .orElseRun(() =>
-          debug(() =>
-            console.warn(
-              'Phrase "%s" is not defined within language "%s"',
-              input,
-              language,
-            ),
+          console.warn(
+            'Phrase "%s" is not defined within language "%s"',
+            input,
+            language.snapshot,
           ),
         )
-        .orJust(input);
+        .getOrElse(input);
     } else {
-      return compileStandalonePhrase(input)(language)
+      return compileStandalonePhrase(input)(language.snapshot)
         .map((phrase) => phrase(params))
         .orElseRun(() =>
-          debug(() =>
-            console.warn(
-              'Phrase "%o" does not include a value for language "%s"',
-              input,
-              language,
-            ),
+          console.warn(
+            'Phrase "%o" does not include a value for language "%s"',
+            input,
+            language.snapshot,
           ),
         )
-        .orJust('');
+        .getOrElse('');
     }
   };
 }

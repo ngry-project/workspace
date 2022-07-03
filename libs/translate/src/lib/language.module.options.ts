@@ -1,9 +1,10 @@
+import { Factory } from './factory';
 import { Language } from './language';
 import { LanguageChangeHandler } from './language-change-handler';
-import { LanguageMapping } from './language-mapping';
+import { LanguageResolver } from './language-resolver';
 import { LanguageSource } from './language-source';
 
-export interface LanguageOptions {
+export interface LanguageModuleOptions {
   /**
    * A default language.
    * Used as fallback when the {@link LanguageSource} provides a non-supported one.
@@ -19,21 +20,21 @@ export interface LanguageOptions {
   readonly supported?: readonly Language[];
 
   /**
-   * An optional language mapping.
-   *
-   * When omitted, no mapping will be performed.
+   * An optional language resolver.
+   * @see DefaultLanguageResolver
    */
-  readonly mapping?: LanguageMapping;
+  readonly resolver?: Factory<LanguageResolver>;
 
   /**
-   * A language source.
+   * An optional language source.
    * @see BrowserLanguageSource
-   * @see FakeLanguageSource
+   * @see DefaultLanguageSource
    */
-  readonly source: LanguageSource;
+  readonly source?: Factory<LanguageSource>;
 
   /**
    * An optional language change handler.
+   * @see DefaultLanguageChangeHandler
    */
-  readonly change?: LanguageChangeHandler;
+  readonly change?: Factory<LanguageChangeHandler>;
 }

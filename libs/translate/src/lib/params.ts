@@ -2,7 +2,7 @@ import { ToString } from './to-string';
 
 /**
  * Represents a phrase interpolation params.
- * @see compileTemplatePhrase
+ * @see Phrase
  * @internal
  */
-export type PhraseParams = Record<string, ToString | null | undefined>;
+export type Params = Record<string, ToString | null | undefined>;

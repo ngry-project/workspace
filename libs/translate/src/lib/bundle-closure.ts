@@ -5,6 +5,6 @@ import { PhraseKey } from './phrase-key';
 /**
  * @internal
  */
-export interface LanguageClosure {
+export interface BundleClosure {
   (key: PhraseKey): Maybe<Phrase>;
 }

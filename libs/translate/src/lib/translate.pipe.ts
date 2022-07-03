@@ -5,10 +5,10 @@ import {
   PipeTransform,
 } from '@angular/core';
 import { skip, Subject, takeUntil, tap } from 'rxjs';
-import { PhraseParams } from './phrase-params';
-import { useLanguageChanges } from './use-language-changes';
+import { Params } from './params';
 import { useTranslate } from './use-translate';
 import { TranslateInput } from './translate-input';
+import { useLanguage } from './use-language';
 
 /**
  * Resolves a translated text by phrase key and optional params.
@@ -21,10 +21,10 @@ import { TranslateInput } from './translate-input';
 export class TranslatePipe implements PipeTransform, OnDestroy {
   private readonly destroy$ = new Subject<void>();
   private readonly translate = useTranslate();
-  private readonly language$ = useLanguageChanges();
+  private readonly language = useLanguage();
 
   constructor(cdr: ChangeDetectorRef) {
-    this.language$
+    this.language
       .pipe(
         takeUntil(this.destroy$),
         skip(1),
@@ -33,7 +33,7 @@ export class TranslatePipe implements PipeTransform, OnDestroy {
       .subscribe();
   }
 
-  transform(input: TranslateInput, params?: PhraseParams): string {
+  transform(input: TranslateInput, params?: Params): string {
     return this.translate(input, params);
   }
 
