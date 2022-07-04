@@ -9,15 +9,15 @@ import { Language } from './language';
  * Use "uk" language when the {@link LanguageSource} provides either "ru" or "be":
  *
  * ```ts
- * TranslationModule.forRoot(() => ({
- *   language: {
- *     default: 'en',
- *     supported: ['en', 'uk', 'pl', 'lv', 'lt'],
- *     mapping: {
- *       'uk': ['ru', 'be']
- *     }
- *   }
- * }));
+ * LanguageModule({
+ *   default: 'en',
+ *   supported: ['en', 'uk', 'pl', 'lv', 'lt'],
+ *   guards: [
+ *     LanguageMappingGuard({
+ *       'uk': ['ru', 'be'],
+ *     }),
+ *   ],
+ * });
  */
 export type LanguageMapping = Record<
   Language,

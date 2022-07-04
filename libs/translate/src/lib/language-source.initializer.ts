@@ -13,12 +13,12 @@ import { LanguageStore } from './language-store';
  * @internal
  */
 export function LanguageSourceInitializer(): Factory<AppInitializer> {
-  return () => {
-    const store = inject(LanguageStore);
-    const source = inject(LANGUAGE_SOURCE);
-    const handle = inject(LANGUAGE_CHANGE_HANDLER);
-    const resolve = inject(LANGUAGE_RESOLVER);
-
+  return (
+    store = inject(LanguageStore),
+    source = inject(LANGUAGE_SOURCE),
+    handle = inject(LANGUAGE_CHANGE_HANDLER),
+    resolve = inject(LANGUAGE_RESOLVER),
+  ) => {
     return () => {
       const request$ = source.changes.pipe(
         map(resolve),

@@ -3,9 +3,9 @@ import { DefaultLanguageChangeHandler } from './default-language-change-handler'
 import { DefaultLanguageSource } from './default-language-source';
 import { DEFAULT_LANGUAGE } from './default-language.token';
 import { LANGUAGE_CHANGE_HANDLER } from './language-change-handler.token';
-import { LANGUAGE_GUARD } from './language.guard.token';
 import { LanguageSourceInitializer } from './language-source.initializer';
 import { LANGUAGE_SOURCE } from './language-source.token';
+import { LANGUAGE_GUARD } from './language.guard.token';
 import { LanguageModuleOptions } from './language.module.options';
 import { SupportedLanguageGuard } from './supported-language.guard';
 import { SUPPORTED_LANGUAGES } from './supported-languages.token';

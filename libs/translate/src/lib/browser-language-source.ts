@@ -15,19 +15,17 @@ import { LanguageSource } from './language-source';
  * @see Window.onlanguagechange
  */
 export function BrowserLanguageSource(): Factory<LanguageSource> {
-  return () => {
-    const _default = inject(DEFAULT_LANGUAGE);
-    const _document = inject(DOCUMENT);
-    const _window = _document.defaultView;
-    const _navigator = _window?.navigator;
+  return (initial = inject(DEFAULT_LANGUAGE), document = inject(DOCUMENT)) => {
+    const window = document.defaultView;
+    const navigator = window?.navigator;
 
     const language$ = new BehaviorSubject<Language>(
-      _navigator?.language ?? _default,
+      navigator?.language ?? initial,
     );
 
-    if (_window) {
-      fromEvent(_window, 'languagechange')
-        .pipe(select(() => _navigator?.language ?? _default))
+    if (window) {
+      fromEvent(window, 'languagechange')
+        .pipe(select(() => navigator?.language ?? initial))
         .subscribe(language$);
     }
 

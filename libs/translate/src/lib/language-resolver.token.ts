@@ -10,9 +10,7 @@ export const LANGUAGE_RESOLVER = new InjectionToken<LanguageResolver>(
   'LANGUAGE_RESOLVER',
   {
     providedIn: 'root',
-    factory: () => {
-      const guards = inject(LANGUAGE_GUARD);
-
+    factory: (guards = inject(LANGUAGE_GUARD)) => {
       return (source: Language): Language => {
         return guards.reduce((language, guard) => guard(language), source);
       };
