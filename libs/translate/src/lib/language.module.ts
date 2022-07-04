@@ -1,13 +1,13 @@
 import { APP_INITIALIZER, Provider } from '@angular/core';
 import { DefaultLanguageChangeHandler } from './default-language-change-handler';
-import { DefaultLanguageResolver } from './default-language-resolver';
 import { DefaultLanguageSource } from './default-language-source';
 import { DEFAULT_LANGUAGE } from './default-language.token';
 import { LANGUAGE_CHANGE_HANDLER } from './language-change-handler.token';
-import { LANGUAGE_RESOLVER } from './language-resolver.token';
+import { LANGUAGE_GUARD } from './language.guard.token';
 import { LanguageSourceInitializer } from './language-source.initializer';
 import { LANGUAGE_SOURCE } from './language-source.token';
 import { LanguageModuleOptions } from './language.module.options';
+import { SupportedLanguageGuard } from './supported-language.guard';
 import { SUPPORTED_LANGUAGES } from './supported-languages.token';
 
 /**
@@ -23,9 +23,15 @@ export function LanguageModule(options: LanguageModuleOptions): Provider[] {
       provide: SUPPORTED_LANGUAGES,
       useValue: new Set(options.supported ?? [options.default]),
     },
+    ...(options.guards ?? []).map((factory) => ({
+      provide: LANGUAGE_GUARD,
+      useFactory: factory,
+      multi: true,
+    })),
     {
-      provide: LANGUAGE_RESOLVER,
-      useFactory: options.resolver ?? DefaultLanguageResolver(),
+      provide: LANGUAGE_GUARD,
+      useFactory: SupportedLanguageGuard(),
+      multi: true,
     },
     {
       provide: LANGUAGE_SOURCE,

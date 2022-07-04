@@ -5,10 +5,11 @@ import { Factory } from './factory';
 import { Language } from './language';
 import { LanguageSource } from './language-source';
 
+/**
+ * @internal
+ */
 export function DefaultLanguageSource(): Factory<LanguageSource> {
-  return () => {
-    const initial = inject(DEFAULT_LANGUAGE);
-
+  return (initial = inject(DEFAULT_LANGUAGE)) => {
     const language$ = new BehaviorSubject<Language>(initial);
 
     return {

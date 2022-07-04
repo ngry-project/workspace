@@ -1,7 +1,7 @@
 import { Factory } from './factory';
 import { Language } from './language';
 import { LanguageChangeHandler } from './language-change-handler';
-import { LanguageResolver } from './language-resolver';
+import { LanguageGuard } from './language.guard';
 import { LanguageSource } from './language-source';
 
 export interface LanguageModuleOptions {
@@ -20,10 +20,11 @@ export interface LanguageModuleOptions {
   readonly supported?: readonly Language[];
 
   /**
-   * An optional language resolver.
-   * @see DefaultLanguageResolver
+   * An optional list of language guards.
+   * @see SupportedLanguageGuard
+   * @see LanguageMappingGuard
    */
-  readonly resolver?: Factory<LanguageResolver>;
+  readonly guards?: readonly Factory<LanguageGuard>[];
 
   /**
    * An optional language source.
