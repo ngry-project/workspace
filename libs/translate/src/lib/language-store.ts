@@ -16,14 +16,14 @@ import { LANGUAGE_SOURCE } from './language-source.token';
 export class LanguageStore extends Store<Language> {
   constructor(
     @Inject(LANGUAGE_SOURCE)
-    private readonly _source: LanguageSource,
+    source: LanguageSource,
     @Inject(LANGUAGE_RESOLVER)
-    private readonly _resolve: LanguageResolver,
+    private readonly resolve: LanguageResolver,
   ) {
-    super(_resolve(_source.current));
+    super(resolve(source.current));
   }
 
   override next(language: string): void {
-    super.next(this._resolve(language));
+    super.next(this.resolve(language));
   }
 }
