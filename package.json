@@ -10,7 +10,8 @@
     "test": "nx test",
     "postinstall": "ngcc --properties es2020 browser module main",
     "prepare": "husky install",
-    "migrate": "nx migrate latest && nx migrate --run-migrations --create-commits"
+    "migrations:create": "nx migrate latest",
+    "migrations:run": "nx migrate --run-migrations"
   },
   "private": true,
   "dependencies": {
