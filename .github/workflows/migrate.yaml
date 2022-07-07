@@ -54,4 +54,4 @@ jobs:
           title: Migrate Nx workspace
           body: ':arrow_up: Migrate Nx workspace'
           labels: migration
-          assignees: avchugaev
+          reviewers: avchugaev
