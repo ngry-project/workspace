@@ -3,5 +3,6 @@
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.configPath": ".prettierrc",
-  "conventionalCommits.scopes": ["rx", "store", "translate"]
+  "conventionalCommits.scopes": ["rx", "store", "translate"],
+  "markdown.extension.toc.levels": "2..6"
 }
