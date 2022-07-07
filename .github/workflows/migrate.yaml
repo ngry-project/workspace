@@ -11,6 +11,14 @@ jobs:
     steps:
       - name: Git - Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_USER_TOKEN }}
+
+      - name: Git - Setup
+        run: |
+          git config user.name "avchugaev"
+          git config user.email "achugaev93@gmail.com"
 
       - name: Node - Setup
         uses: actions/setup-node@v3
@@ -48,7 +56,8 @@ jobs:
       - name: Github - Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: 'chore: :arrow_up: Migrate Nx workspace'
+          token: ${{ secrets.GH_USER_TOKEN }}
+          commit-message: 'chore: :arrow_up: Migrate Nx workspace to the latest version'
           branch: migration
           branch-suffix: random
           title: Migrate Nx workspace
