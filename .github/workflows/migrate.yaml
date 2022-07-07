@@ -38,7 +38,7 @@ jobs:
         run: npm run migrations:create
 
       - name: Nx - Run migrations
-        run: npm run migrations:create
+        run: npm run migrations:run
         continue-on-error: true
 
       - name: Nx - Delete migrations file
