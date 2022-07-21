@@ -1,0 +1,58 @@
+name: ':evergreen_tree: NPM Audit'
+
+on:
+  schedule:
+    - cron: 0 7 * * *
+  workflow_dispatch:
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git - Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_USER_TOKEN }}
+
+      - name: Git - Setup
+        run: |
+          git config user.name "avchugaev"
+          git config user.email "achugaev93@gmail.com"
+
+      - name: Node - Setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: NPM - Set cache directory
+        id: npm-cache-dir
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: NPM - Restore cache
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-npm-migrate-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-migrate-
+
+      - name: NPM - Install dependencies
+        run: npm ci --prefer-offline=true --audit=false
+
+      - name: NPM - Audit and fix
+        run: npm audit fix
+
+      - name: Github - Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GH_USER_TOKEN }}
+          commit-message: 'chore: :evergreen_tree: perform NPM audit and fix'
+          branch: npm-audit
+          branch-suffix: random
+          title: NPM audit and fix
+          body: ':evergreen_tree: NPM audit and fix'
+          labels: npm-audit
+          assignees: avchugaev
