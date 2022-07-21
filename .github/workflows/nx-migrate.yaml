@@ -1,4 +1,4 @@
-name: Migrate
+name: Nx Migrate
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  migrate:
+  nx-migrate:
     runs-on: ubuntu-latest
     steps:
       - name: Git - Checkout
@@ -63,4 +63,4 @@ jobs:
           title: Migrate Nx workspace
           body: ':arrow_up: Migrate Nx workspace'
           labels: migration
-          reviewers: avchugaev
+          assignees: avchugaev
