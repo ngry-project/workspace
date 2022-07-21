@@ -1,4 +1,4 @@
-name: ':evergreen_tree: NPM Audit'
+name: NPM Audit
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  migrate:
+  npm-audit:
     runs-on: ubuntu-latest
     steps:
       - name: Git - Checkout
@@ -35,9 +35,9 @@ jobs:
         id: npm-cache
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-npm-migrate-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-audit-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-npm-migrate-
+            ${{ runner.os }}-npm-audit-
 
       - name: NPM - Install dependencies
         run: npm ci --prefer-offline=true --audit=false
