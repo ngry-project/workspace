@@ -3,6 +3,7 @@
 ### Table of contents
 
 - [:package: Installation](#package-installation)
+- [:gem: Key benefits](#gem-key-benefits)
 - [:rocket: Quick start](#rocket-quick-start)
 - [:wrench: Language configuration](#wrench-language-configuration)
   - [Default language](#default-language)
@@ -25,6 +26,16 @@ Using Yarn:
 ```bash
 yarn add @ngry/translate
 ```
+
+:arrow_up: [Table of contents](#table-of-contents)
+
+## :gem: Key benefits
+
+**Flexible language configuration:** define a [default language](#default-language), a list of [supported languages](#supported-languages); provide a custom [language source](#language-source); control the language resolution using [guards](#language-guards); control the language transition process using a [language change handler](#language-change-handler).
+
+**Component-scoped translations:** just like styles, translation isolation makes components more standalone and reusable and eliminates long translation keys.
+
+**Performance:** Angular compiler applies all the same optimizations to translations as it does to the normal code - tree shaking, code splitting and lazy loading.
 
 ## :rocket: Quick start
 
@@ -64,43 +75,40 @@ export class AppModule {}
 Add component's translations in a separate `.json` or `.ts` file next to the rest of its files:
 
 ```
-user-menu/
-  user-menu.component.html
-  user-menu.component.json      <-- component's translations
-  user-menu.component.scss
-  user-menu.component.ts
-  user-menu.component.spec.ts
+📁 user-menu
+   📄 user-menu.component.html
+   📄 user-menu.component.json // component's translations
+   📄 user-menu.component.scss
+   📄 user-menu.component.ts
+   📄 user-menu.component.spec.ts
 ```
 
 Add translations for each supported language for this component:
 
+`user-menu.component.json`
+
 ```json
-// user-menu.component.json
 {
   "en": {
     "account": "Account",
     "settings": "Settings",
     "sign-out": "Sing out",
-    "sign-out-confirmation": "Do you want sign out?"
+    "sign-out-confirmation": "Do you want to sign out?"
   },
   "uk": {
     "account": "Обліковий запис",
     "settings": "Налаштування",
     "sign-out": "Вихід",
     "sign-out-confirmation": "Ви справді хочете вийти?"
-  },
-  ...
+  }
 }
 ```
 
-> :tada: Notice how clean and short phrase keys are!
->
-> As translations are isolated at component level, there's no need for a very specific, app-wide unique, lengthy keys. Hooray!
-
 Import translations just like any other file and provide them to component's `viewProviders` using `TranslateProvider` factory:
 
+`user-menu.component.ts`
+
 ```ts
-// user-menu.component.ts
 import { TranslatePipe, TranslateProvider } from '@ngry/translate';
 import TEXT_DATA from './user-menu.component.json';
 
@@ -114,7 +122,7 @@ import TEXT_DATA from './user-menu.component.json';
 export class UserMenuComponent {}
 ```
 
-> :information_source: Hint
+> :information_source: **Hint**
 >
 > In order to import `.json` files, make sure you have these options enabled in `tsconfig.json`:
 >
@@ -125,8 +133,9 @@ export class UserMenuComponent {}
 
 Access phrase by key in component's template using `translate` pipe (declarative approach):
 
+`user-menu.component.html`
+
 ```html
-<!-- user-menu.component.html -->
 <app-menu>
   <app-menu-item>{{'account' | translate}}</app-menu-item>
   <app-menu-item>{{'settings' | translate}}</app-menu-item>
@@ -136,8 +145,9 @@ Access phrase by key in component's template using `translate` pipe (declarative
 
 Access phrase by key in component's code using `useTranslate` hook (imperative approach):
 
+`user-menu.component.ts`
+
 ```ts
-// user-menu.component.ts
 import {
   TranslatePipe,
   TranslateProvider,
@@ -167,6 +177,8 @@ export class UserMenuComponent {
 }
 ```
 
+:arrow_up: [Table of contents](#table-of-contents)
+
 ## :wrench: Language configuration
 
 The module provides a flexible language configuration allowing to override behavior.
@@ -188,11 +200,13 @@ bootstrapApplication(AppComponent, {
 });
 ```
 
-> :information_source: Recommendation
+> :information_source: **Hint**
 >
-> Consider using [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) format for language codes.
+> It's recommented to use [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) format for language codes.
 >
 > Examples: "en", "uk", "pl", "zh", "it", "de" etc.
+
+:arrow_up: [Table of contents](#table-of-contents) | [Language configuration](#wrench-language-configuration)
 
 ### Supported languages
 
@@ -211,6 +225,8 @@ bootstrapApplication(AppComponent, {
   ],
 });
 ```
+
+:arrow_up: [Table of contents](#table-of-contents) | [Language configuration](#wrench-language-configuration)
 
 ### Language guards
 
@@ -238,6 +254,8 @@ bootstrapApplication(AppComponent, {
 });
 ```
 
+:arrow_up: [Table of contents](#table-of-contents) | [Language configuration](#wrench-language-configuration)
+
 ### Language source
 
 A language source is an entity which
@@ -259,6 +277,8 @@ bootstrapApplication(AppComponent, {
   ],
 });
 ```
+
+:arrow_up: [Table of contents](#table-of-contents) | [Language configuration](#wrench-language-configuration)
 
 ### Language change handler
 
@@ -286,6 +306,8 @@ bootstrapApplication(AppComponent, {
   ],
 });
 ```
+
+:arrow_up: [Table of contents](#table-of-contents) | [Language configuration](#wrench-language-configuration)
 
 ## License
 
