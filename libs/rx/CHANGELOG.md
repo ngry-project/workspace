@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [16.0.2](https://github.com/ngry-project/workspace/compare/rx@16.0.1...rx@16.0.2) (2022-08-13)
+
+
+
 ## [16.0.1](https://github.com/ngry-project/workspace/compare/rx@16.0.0...rx@16.0.1) (2022-06-28)
 
 
