@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [13.0.2](https://github.com/ngry-project/workspace/compare/store@13.0.1...store@13.0.2) (2022-08-15)
+
+### Dependency Updates
+
+* `rx` updated to version `0.1.0`
+
+
 ## [13.0.2](https://github.com/ngry-project/workspace/compare/store@13.0.1...store@13.0.2) (2022-08-13)
 
 ### Dependency Updates
