@@ -27,6 +27,14 @@
       "dependsOn": ["build"]
     }
   },
+  "targetDependencies": {
+    "release": [
+      {
+        "target": "release",
+        "projects": "dependencies"
+      }
+    ]
+  },
   "generators": {
     "@nrwl/angular:application": {
       "style": "scss",
