@@ -2,6 +2,14 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [5.0.2](https://github.com/ngry-project/workspace/compare/translate@5.0.1...translate@5.0.2) (2022-08-17)
+
+### Dependency Updates
+
+* `rx` updated to version `0.1.0`
+* `store` updated to version `0.1.0`
+
+
 ## [5.0.2](https://github.com/ngry-project/workspace/compare/translate@5.0.1...translate@5.0.2) (2022-08-13)
 
 ### Dependency Updates
