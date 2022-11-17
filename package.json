@@ -28,7 +28,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "14.2.1",
+    "@angular-devkit/build-angular": "15.0.0",
     "@angular-eslint/eslint-plugin": "14.0.4",
     "@angular-eslint/eslint-plugin-template": "14.0.4",
     "@angular-eslint/template-parser": "14.0.4",
@@ -38,7 +38,7 @@
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-angular": "^17.0.0",
     "@jscutlery/semver": "^2.25.2",
-    "@nrwl/angular": "14.8.4",
+    "@nrwl/angular": "15.1.1",
     "@nrwl/cli": "14.8.4",
     "@nrwl/eslint-plugin-nx": "14.8.4",
     "@nrwl/jest": "14.8.4",
