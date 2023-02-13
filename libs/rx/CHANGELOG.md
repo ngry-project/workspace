@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [16.1.0](https://github.com/ngry-project/workspace/compare/rx@16.0.2...rx@16.1.0) (2023-02-13)
+
+
+### Features
+
+* migrate to angular 15 ([8a5239f](https://github.com/ngry-project/workspace/commit/8a5239f69c1b0e9188f8a8023ca96c1cd91a3454))
+
+
+
 ## [16.0.2](https://github.com/ngry-project/workspace/compare/rx@16.0.1...rx@16.0.2) (2022-08-13)
 
 

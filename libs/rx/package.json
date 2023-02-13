@@ -1,6 +1,6 @@
 {
   "name": "@ngry/rx",
-  "version": "16.0.2",
+  "version": "16.1.0",
   "description": "RxJS toolkit for Angular development and testing",
   "keywords": [
     "angular",
