@@ -1,11 +1,12 @@
 {
+  "name": "store",
   "projectType": "library",
   "sourceRoot": "libs/store/src",
   "prefix": "ngry",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/store"],
+      "outputs": ["{workspaceRoot}/dist/libs/store"],
       "options": {
         "project": "libs/store/ng-package.json"
       },
@@ -21,7 +22,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/store"],
+      "outputs": ["{workspaceRoot}/coverage/libs/store"],
       "options": {
         "jestConfig": "libs/store/jest.config.ts",
         "passWithNoTests": true,

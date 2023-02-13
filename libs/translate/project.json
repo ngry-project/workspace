@@ -1,11 +1,12 @@
 {
+  "name": "translate",
   "projectType": "library",
   "sourceRoot": "libs/translate/src",
   "prefix": "ngry",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/translate"],
+      "outputs": ["{workspaceRoot}/dist/libs/translate"],
       "options": {
         "project": "libs/translate/ng-package.json"
       },
@@ -21,7 +22,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/translate"],
+      "outputs": ["{workspaceRoot}/coverage/libs/translate"],
       "options": {
         "jestConfig": "libs/translate/jest.config.ts",
         "passWithNoTests": true,

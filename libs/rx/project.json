@@ -1,11 +1,12 @@
 {
+  "name": "rx",
   "projectType": "library",
   "sourceRoot": "libs/rx/src",
   "prefix": "ngry",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/rx"],
+      "outputs": ["{workspaceRoot}/dist/libs/rx"],
       "options": {
         "project": "libs/rx/ng-package.json"
       },
@@ -21,7 +22,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/rx"],
+      "outputs": ["{workspaceRoot}/coverage/libs/rx"],
       "options": {
         "jestConfig": "libs/rx/jest.config.ts",
         "passWithNoTests": true,
