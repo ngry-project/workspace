@@ -1,9 +1,5 @@
 import { Inject, Injectable, Optional, Self, SkipSelf } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  Resolve,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { map } from 'rxjs';
 import { StandalonePhrase } from '../../standalone-phrase';
 import { useLanguage } from '../../use-language';
@@ -12,7 +8,7 @@ import { ROUTE_TITLE_PARAMS } from './route-title-params.token';
 import { ROUTE_TITLE_PHRASE } from './route-title-phrase.token';
 
 @Injectable()
-export class TitleResolve implements Resolve<string> {
+export class TitleResolve  {
   private readonly language = useLanguage();
 
   get path(): readonly TitleResolve[] {
